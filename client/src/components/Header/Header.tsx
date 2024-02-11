@@ -9,26 +9,25 @@ import { AddOutlined } from "@mui/icons-material";
 import { UserData } from "../../types";
 import "./styles.css";
 import { UserAvatar } from "../UserAvatar";
-import {styled} from 'styled-components';
-
-const A = styled.span`
-  color: blue;
-`;
-
+import { styled } from "styled-components";
 
 type HeaderProps = {
   openPostEditor: () => void;
+  onUserAvatarClicked: () => void;
+  loggedInUser: UserData;
 };
 
-export const Header: React.FC<HeaderProps> = ({ openPostEditor }) => {
-  const user: UserData = { id: 0, name: "" }; // CHANGE ME
-
+export const Header: React.FC<HeaderProps> = ({
+  openPostEditor,
+  onUserAvatarClicked,
+  loggedInUser,
+}) => {
   return (
     <AppBar position="static">
       <Toolbar disableGutters className="app-toolbar">
         <Tooltip title="Switch User">
-          <IconButton>
-            <UserAvatar user={user} className="user-avatar" />
+          <IconButton onClick={() => onUserAvatarClicked()}>
+            <UserAvatar user={loggedInUser} className="user-avatar" />
           </IconButton>
         </Tooltip>
         <div>
@@ -36,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ openPostEditor }) => {
             BriefCam Social
           </Typography>
           <Typography className="app-title" variant="subtitle1" lineHeight={1}>
-            {user.name}
+            {loggedInUser.name}
           </Typography>
         </div>
         <Tooltip title="Add Post">
