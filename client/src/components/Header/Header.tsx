@@ -9,12 +9,12 @@ import { AddOutlined } from "@mui/icons-material";
 import { UserData } from "../../types";
 import "./styles.css";
 import { UserAvatar } from "../UserAvatar";
-import { styled } from "styled-components";
 
 type HeaderProps = {
   openPostEditor: () => void;
   onUserAvatarClicked: () => void;
   loggedInUser: UserData;
+  setIsPostEditorOpen: () => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
